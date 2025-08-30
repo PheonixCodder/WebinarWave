@@ -1,20 +1,30 @@
 import { onAuthenticateUser } from "@/actions/auth";
-import { redirect } from "next/navigation";
-import React from "react";
+import Sidebar from "@/components/ReuseableComponent/LayoutComponents/Sidebar";
+import Header from "@/components/ReuseableComponent/LayoutComponents/Header";
+import { redirect } from 'next/navigation'
+import React from 'react'
 
-const Layout = async ({ children }: { children: React.ReactNode }) => {
-  const userExist = await onAuthenticateUser();
+type Props = {
+  children: React.ReactNode
+}
+
+const Layout = async ({ children }: Props) => {
+  const userExist = await onAuthenticateUser()
+
   if (!userExist.user) {
-    redirect("/sign-in");
+    redirect('/sign-in')
   }
+
   return (
     <div className="flex w-full min-h-screen">
-      <Sidebar />
+      {/* SIDEBAR */}
+      <Sidebar/>
       <div className="flex flex-col w-full h-screen overflow-auto px-4 scrollbar-hide container mx-auto">
+        <Header user={userExist.user}/>
         {children}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
