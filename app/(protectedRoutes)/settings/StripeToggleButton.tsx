@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { LucideArrowRight } from 'lucide-react';
 
-export function StripeToggleButton({ initialConnected }: { initialConnected: boolean }) {
+export function StripeToggleButton({ initialConnected, onToggle }: { initialConnected: boolean, onToggle: (newState: boolean) => void }) {
   const [isConnected, setIsConnected] = useState(initialConnected);
   const [loading, setLoading] = useState(false);
 

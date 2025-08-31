@@ -33,7 +33,7 @@ const Page = async ({ params }: Props) => {
         heading="Keep track of all of your customers"
         placeholder="Search Name, Tag or Email"
       />
-      <div className="flex overflow-x-auto pb-4 gap-4 md:gap-6 px-6 md:px-8 lg:px-10 xl:px-12">
+      <div className="flex overflow-x-scroll scrollbar pb-4 gap-4 md:gap-6 px-6 md:px-8 lg:px-10 xl:px-12 h-full">
         {Object.entries(pipelineData.data).map(([columnType, columnData]) => (
             <PipelineLayout
             key={columnType}

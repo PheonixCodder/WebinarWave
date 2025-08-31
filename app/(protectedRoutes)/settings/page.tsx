@@ -1,14 +1,12 @@
-'use client';
+"use client";
 
 //  change the ui when user toggles
 
-import { onAuthenticateUser } from '@/actions/auth';
-import { LucideAlertCircle, LucideCheckCircle2 } from 'lucide-react';
-import { redirect, useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { StripeToggleButton } from './StripeToggleButton';
-
-type Props = {};
+import { onAuthenticateUser } from "@/actions/auth";
+import { LucideAlertCircle, LucideCheckCircle2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { StripeToggleButton } from "./StripeToggleButton";
 
 const Page = () => {
   const router = useRouter();
@@ -18,7 +16,7 @@ const Page = () => {
     async function fetchUser() {
       const userExist = await onAuthenticateUser();
       if (!userExist?.user) {
-        router.replace('/sign-in');
+        router.replace("/sign-in");
       } else {
         setIsConnected(!!userExist.user.stripeConnectId);
       }
@@ -51,7 +49,9 @@ const Page = () => {
             </svg>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-primary">Stripe Connect</h2>
+            <h2 className="text-xl font-semibold text-primary">
+              Stripe Connect
+            </h2>
             <p className="text-muted-foreground text-sm">
               Connect your Stripe account to start accepting payments
             </p>
@@ -68,13 +68,13 @@ const Page = () => {
             <div>
               <p className="font-medium">
                 {isConnected
-                  ? 'Your Stripe account is connected'
-                  : 'Your Stripe account is not connected yet'}
+                  ? "Your Stripe account is connected"
+                  : "Your Stripe account is not connected yet"}
               </p>
               <p className="text-sm text-muted-foreground mt-1">
                 {isConnected
-                  ? 'You can now accept payments through your application'
-                  : 'Connect your Stripe account to start processing payments and managing subscriptions'}
+                  ? "You can now accept payments through your application"
+                  : "Connect your Stripe account to start processing payments and managing subscriptions"}
               </p>
             </div>
           </div>
@@ -83,22 +83,24 @@ const Page = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-muted-foreground">
             {isConnected
-              ? 'You can disconnect or reconnect anytime if needed'
-              : 'Toggle the button below to connect your Stripe account'}
+              ? "You can disconnect or reconnect anytime if needed"
+              : "Toggle the button below to connect your Stripe account"}
           </div>
 
           {/* Pass callback to update the state */}
           <StripeToggleButton
             initialConnected={isConnected}
-            onToggle={( newState: boolean) => {
-                setIsConnected(newState);
+            onToggle={(newState: boolean) => {
+              setIsConnected(newState);
             }}
-            />
+          />
         </div>
 
         {!isConnected && (
           <div className="mt-6 pt-6 border-t border-border">
-            <h3 className="text-sm font-medium mb-2">Why connect with Stripe?</h3>
+            <h3 className="text-sm font-medium mb-2">
+              Why connect with Stripe?
+            </h3>
             <ul className="text-sm text-muted-foreground space-y-2">
               <li>
                 <div className="flex items-center gap-2">
