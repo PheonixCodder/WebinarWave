@@ -1,28 +1,27 @@
-import React from 'react'
-import PageHeader from '@/components/ReuseableComponent/PageHeader'
-import { HomeIcon, GitFork, Users } from 'lucide-react'
-import { getWebinarAttendance } from '@/actions/attendance'
-import PipelineLayout from './_components/PipelineLayout'
-import { AttendedTypeEnum } from '@/lib/generated/prisma'
-import { formatColumnTitle } from './_components/utils'
-
+import React from "react";
+import PageHeader from "@/components/ReuseableComponent/PageHeader";
+import { HomeIcon, GitFork, Users } from "lucide-react";
+import { getWebinarAttendance } from "@/actions/attendance";
+import PipelineLayout from "./_components/PipelineLayout";
+import { AttendedTypeEnum } from "@/lib/generated/prisma";
+import { formatColumnTitle } from "./_components/utils";
 
 type Props = {
   params: {
-    webinarId: string
-  }
-}   
+    webinarId: string;
+  };
+};
 
 const Page = async ({ params }: Props) => {
-  const { webinarId } = await params
-  const pipelineData=await getWebinarAttendance(webinarId)
+  const { webinarId } = await params;
+  const pipelineData = await getWebinarAttendance(webinarId);
   if (!pipelineData.data) {
-  return (
-    <div className="text-3xl h-[400px] flex justify-center items-center">
-      No Pipelines Found
-    </div>
-  )
-}
+    return (
+      <div className="text-3xl h-[400px] flex justify-center items-center">
+        No Pipelines Found
+      </div>
+    );
+  }
   // TODO: show real data
   return (
     <div className="w-full flex flex-col gap-8">
@@ -33,19 +32,19 @@ const Page = async ({ params }: Props) => {
         heading="Keep track of all of your customers"
         placeholder="Search Name, Tag or Email"
       />
-      <div className="flex overflow-x-scroll scrollbar pb-4 gap-4 md:gap-6 px-6 md:px-8 lg:px-10 xl:px-12 h-full">
+      <div className="flex overflow-x-scroll scrollbar pb-4 gap-4 md:gap-6 px-6 md:px-8 lg:px-10 xl:px-12 min-h-[350px]">
         {Object.entries(pipelineData.data).map(([columnType, columnData]) => (
-            <PipelineLayout
+          <PipelineLayout
             key={columnType}
             title={formatColumnTitle(columnType as AttendedTypeEnum)}
             count={columnData.count}
             users={columnData.users}
             tags={pipelineData.webinarTags}
-            />
+          />
         ))}
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
