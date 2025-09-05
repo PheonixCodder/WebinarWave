@@ -25,7 +25,6 @@ export function StripeToggleButton({ initialConnected, onToggle }: { initialConn
 
   return (
     <button
-      onClick={handleToggle}
       disabled={loading}
       className={`px-5 py-2.5 rounded-md font-medium text-sm flex items-center gap-2 transition-colors ${
         isConnected

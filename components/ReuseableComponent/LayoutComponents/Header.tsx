@@ -33,7 +33,7 @@ const Header = ({ user }: Props) => {
             <PurpleIcon>
                 <Zap className="w-4 h-4 text-white" strokeWidth={2} />
             </PurpleIcon>
-            <CreateWebinarButton/>
+            <CreateWebinarButton  />
         </div>
     </div>
   )

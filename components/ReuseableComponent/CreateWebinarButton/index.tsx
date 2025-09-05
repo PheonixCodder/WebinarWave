@@ -15,6 +15,7 @@ import BasicInfoStep from "./BasicInfoStep";
 import CTAStep from "./CTAStep";
 import AdditionalInfoStep from "./AdditionalInfoStep";
 import SuccessStep from "./SuccessStep";
+import Stripe from 'stripe'
 
 const CreateWebinarButton = () => {
   const { isModalOpen, setModalOpen, isComplete, setComplete, resetForm } =
@@ -32,7 +33,7 @@ const CreateWebinarButton = () => {
       title: "CTA",
       description:
         "Please provide the end-point for your customers through your webinar",
-      component: <CTAStep assistants={[]} stripeProducts={[]} />,
+      component: <CTAStep assistants={[]} />,
     },
     {
       id: "additionalInfo",

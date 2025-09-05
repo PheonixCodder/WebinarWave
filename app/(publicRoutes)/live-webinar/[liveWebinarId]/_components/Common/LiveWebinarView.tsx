@@ -6,6 +6,9 @@ import { ParticipantView, useCallStateHooks } from "@stream-io/video-react-sdk";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CtaTypeEnum } from "@/lib/generated/prisma";
+import { Chat, Channel, MessageList, MessageInput } from "stream-chat-react";
+import 'stream-chat-react/dist/css/v2/index.css';
+import CTADialogBox from "./CTADialogBox";
 
 type Props = {
   showChat: boolean;
@@ -87,7 +90,7 @@ const LiveWebinarView = ({
     }
   }, [chatClient, channel, isHost]);
 
-  // if (!chatClient || !channel) return null
+  if (!chatClient || !channel) return null
 
   return (
     <div className="flex flex-col w-full h-screen max-h-screen overflow-hidden bg-background text-foreground">
@@ -162,7 +165,26 @@ const LiveWebinarView = ({
             )}
           </div>
         </div>
+        {showChat && (
+          <Chat client={chatClient}>
+            <Channel channel={channel}>
+              <div className="w-72 bg-card border border-border rounded-lg overflow-hidden flex flex-col">
+                <div className="py-2 px-3 border-b border-border font-medium flex items-center justify-between">
+                  <span>Chat</span>
+                  <span className="text-sm bg-muted px-2 py-0.5 rounded-full">{viewerCount} Viewers</span>
+                </div>
+                <MessageList />
+                <div className="p-2 border-t border-border">
+                  <MessageInput />
+                </div>
+              </div>
+            </Channel>
+          </Chat>
+        )}
       </div>
+      {dialogOpen && (
+        <CTADialogBox open={dialogOpen} onOpenChange={setDialogOpen} webinar={webinar} userId={userId} />
+      )}
     </div>
   );
 };

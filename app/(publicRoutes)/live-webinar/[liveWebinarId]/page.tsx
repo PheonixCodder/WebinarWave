@@ -30,6 +30,9 @@ const page = async ({ params, searchParams }: Props) => {
     const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
     const token = process.env.STREAM_TOKEN as string;
     const callId = process.env.STREAM_CALL_ID as string;
+    console.log(apiKey)
+    console.log(callId)
+    console.log(token)
 
     return (
     <div className="w-full min-h-screen mx-auto">

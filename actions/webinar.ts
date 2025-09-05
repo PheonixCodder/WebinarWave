@@ -68,7 +68,7 @@ export const createWebinar = async (formData: WebinarFormState) => {
         startTime: combinedDateTime,
         tags: formData.cta.tags || [],
         ctaLabel: formData.cta.ctaLabel,
-        ctaType: formData.cta.ctaType,
+        ctaType: formData.cta.ctaType!,
         aiAgentId: formData.cta.aiAgent || null,
         priceId: formData.cta.priceId || null,
         lockChat: formData.additionalInfo.lockChat || false,
@@ -104,7 +104,6 @@ export const getWebinarByPresenterId = async (presenterId: string) => {
         presenter: {
           select:{
             name: true,
-            stripeConnectId: true,
             id:true,
           },
         },
@@ -127,7 +126,6 @@ export const getWebinarById = async (webinarId: string) => {
             id: true,
             name: true,
             profileImage: true,
-            stripeConnectId: true,
           },
         },
       },

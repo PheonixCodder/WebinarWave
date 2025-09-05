@@ -15,6 +15,7 @@ const Layout = async ({ children }: Props) => {
     redirect('/sign-in')
   }
 
+
   return (
     <div className="flex w-full min-h-screen">
       {/* SIDEBAR */}
